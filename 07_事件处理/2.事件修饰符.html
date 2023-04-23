@@ -53,7 +53,8 @@
 
         <!-- 2.阻止事件冒泡（常用） -->
         <div class="demo1" @click="clickStop(1)">
-            <button @click.stop="clickStop(2)">点击提示信息（阻止事件冒泡）</button>
+            <button @click.stop="clickStop(2)">点击提示信息（阻止事件冒泡）</button><br>
+            <a href="www.baidu.com" @click.stop.prevent="clickStop(2)">点击提示信息（阻止事件冒泡且阻止默认行为，连续写，）
         </div>
 
         <!-- 3.事件只触发一次（常用） -->
