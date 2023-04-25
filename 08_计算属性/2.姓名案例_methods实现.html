@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>姓名案例_methods实现</title>
+    <!-- 开发版本vue -->
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+     <!-- 准备好一个容器 -->
+    <div id="root">
+        姓：<input type="text" v-model="firstName"> <br/>
+        名：<input type="text" v-model="lastName"> <br/>
+        全名：<span>{{fullName()}}</span> <br/>
+        全名：<span>{{fullName()}}</span> <br/>
+        全名：<span>{{fullName()}}</span> <br/>
+    </div>
+</body>
+<script>
+    Vue.config.productionTip = false // 阻止Vue 在启动时生成生产提示
+    
+    new Vue({
+        el: '#root',
+        data: {
+            firstName: '林',
+            lastName: '克'
+        },
+        methods: {
+            fullName() {
+                // 调用很多次，多处使用，就会调用多次
+                console.log('@@')
+                return this.firstName + '-' + this.lastName;
+            }
+        }
+    });
+</script>
+</html>
