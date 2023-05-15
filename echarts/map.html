@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>ECharts</title>
+    <!-- 引入 echarts.js -->
+	<!-- 下载 https://www.jsdelivr.com/package/npm/echarts -->
+    <script src="./echarts.min.js"></script>
+    <script src="./jquery.min.js"></script>
+</head>
+<body>
+	<!--
+		阿里云数据可视化平台：
+		http://datav.aliyun.com/portal/school/atlas/area_selector#&lat=31.769817845138945&lng=104.29901249999999&zoom=4
+	-->
+	<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main" style="width: 700px;height:500px;"></div>
+    <script type="text/javascript">
+        //$.get('https://geo.datav.aliyun.com/areas_v3/bound/341100_full.json', function (cZjson) {
+		$.get('./mapData/henan_410000_full.json', function (cZjson) {
+        echarts.registerMap('河南省', cZjson);
+        var chart = echarts.init(document.getElementById('main'));
+        
+        option = {
+            title: {
+                text: '预警变色',
+                x:'center'
+            },
+            dataRange:{
+            	min:0,
+            	max:500,
+            	text:['高','低'],
+            	realtime:true,
+            	calculable:true,
+            	color:['orangered','yellow','green']
+            },
+            series:[
+            	{
+            		name:'犯罪数量',
+            		type:'map',
+            		map:'河南省',
+            		mapLocation:{
+            			y:60
+            		},
+            		itemSytle:{
+            			emphasis:{label:{show:false}}
+            		},
+            		data:[
+            			{name:'新乡市',value:700},
+            			{name:'南阳市',value:600},
+            			{name:'开封市',value:500},
+            			{name:'洛阳市',value:400},
+            			{name:'明光市',value:300},
+            			{name:'平顶山市',value:200},
+            			{name:'三门峡市',value:100}
+            		]
+            	}
+            ],
+            
+        };
+        chart.setOption(option);
+});
+    </script>
+</body>
+</html>
